@@ -17,6 +17,7 @@ import { MaterialModule } from '../shared/material.module';
 import { UserService } from './services/user.service';
 import { NotesComponent } from './components/notes/notes.component';
 import { NewContactDialogComponent } from './components/new-contact-dialog/new-contact-dialog.component';
+import { ContactOptionsSheetComponent } from './components/contact-options-sheet/contact-options-sheet.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
     MainContentComponent,
     SidenavComponent,
     NotesComponent,
-    NewContactDialogComponent
+    NewContactDialogComponent,
+    ContactOptionsSheetComponent
   ],
   imports: [
     CommonModule,

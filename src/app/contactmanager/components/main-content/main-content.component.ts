@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { ContactOptionsSheetComponent } from '../contact-options-sheet/contact-options-sheet.component';
 
 @Component({
   selector: 'app-main-content',
@@ -13,7 +15,8 @@ export class MainContentComponent implements OnInit {
   user: User;
   constructor(
     private route: ActivatedRoute,
-    private service: UserService) { }
+    private service: UserService,
+    private bottomSheet: MatBottomSheet) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -30,6 +33,19 @@ export class MainContentComponent implements OnInit {
       });
 
     })
+
+  }
+
+  openBottomSheet(): void {
+    let bottomSheetRef = this.bottomSheet.open(ContactOptionsSheetComponent, {
+      data: { phoneNumbers : [ '+46711111111', '+46722222222', '+46733333333'] }
+    });
+
+    bottomSheetRef.afterDismissed().subscribe((data) => {
+      if (data) {
+        console.log(data);
+      }
+    });
   }
 
 }
